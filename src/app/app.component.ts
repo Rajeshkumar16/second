@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'second';
+  constructor(private http: HttpClient){}
+ngOnInit(): void {
+this.http.get<any>("https://api.npms.io/v2/search?q=scope:angular").subscribe(data=>{
+  console.log(data);
+})
+// http://192.168.43.89:4000/api/getUserData
+}
 }
